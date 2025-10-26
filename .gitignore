@@ -8,10 +8,8 @@ ster_pdfs/
 _site/
 data/
 *_files/
-*.html
 debug*.R
 test*.R
 render_dashboard*.R
 dashboard*.qmd
 dashboard*.Rmd
-styles*.css
