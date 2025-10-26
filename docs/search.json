@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": " Political Ad Spend Tracker",
+    "section": "",
+    "text": "This dashboard tracks political advertising spending across three major data sources in the Netherlands leading up to the 2025 parliamentary elections. Following new EU transparency regulations and subsequent political ad bans by Meta and Google, the Dutch political advertising landscape has fundamentally shifted toward traditional media channels.\nFor social media advertising data (Meta/Google) up until the ban, see the Who Targets Me Dashboard.\nLast Updated: October 26, 2025 at 17:02 CET"
+  },
+  {
+    "objectID": "index.html#data-sources-overview",
+    "href": "index.html#data-sources-overview",
+    "title": " Political Ad Spend Tracker",
+    "section": "Data Sources Overview",
+    "text": "Data Sources Overview\n\n\n\n\n\n\n1. politiekereclame.nl\n\n\n\n\n\nMost Comprehensive Campaign Database - Aggregates political advertising data from multiple sources. Includes campaign spending, media channels, advertiser info, and campaign periods. Data is voluntarily reported by political parties.\nStrengths: Complete overview, detailed channel breakdown, comprehensive coverage\nLimitations: Voluntary reporting, may not capture all spending\n\n\n\n\n\n\n\n\n\n2. Ster Transparency Statements\n\n\n\n\n\nOfficial Broadcasting Transparency - Dutch public broadcasting organization providing detailed financial breakdowns of campaign spending. Includes both total campaign amounts and specific amounts spent on Ster channels (TV, radio, online). Data comes from mandatory transparency requirements.\nStrengths: Official mandatory reporting, precise financial data, detailed channel breakdown\nLimitations: Only covers Ster channels, limited to parties using public broadcasting\n\n\n\n\n\n\n\n\n\n3. DPG Media API\n\n\n\n\n\nMajor Media Company Data - One of the largest media companies in the Netherlands, operating newspapers, websites, and digital platforms. Provides campaign data from their advertising platforms. Spending amounts may have varying boundaries depending on campaign structure and reporting.\nStrengths: Real-time data, major media company coverage, detailed campaign information\nLimitations: Varying spending boundaries, limited to DPG Media properties only"
+  },
+  {
+    "objectID": "index.html#key-insights",
+    "href": "index.html#key-insights",
+    "title": "Political Advertising Spending Dashboard",
+    "section": "Key Insights",
+    "text": "Key Insights\n\nPolitiekereclame.nl provides the most comprehensive overview with detailed campaign information\nSter data offers the most accurate financial breakdowns with official transparency statements\n\nDPG Media provides insights into one of the largest media companies’ political advertising\nEach source has different strengths and limitations in terms of data completeness and accuracy\nCross-referencing between sources can provide a more complete picture of political advertising spending"
+  },
+  {
+    "objectID": "index.html#top-spending-overview",
+    "href": "index.html#top-spending-overview",
+    "title": "Political Advertising Spending Dashboard",
+    "section": "Top Spending Overview",
+    "text": "Top Spending Overview"
+  },
+  {
+    "objectID": "index.html#party-color-legend",
+    "href": "index.html#party-color-legend",
+    "title": "Political Advertising Spending Dashboard",
+    "section": "Party Color Legend",
+    "text": "Party Color Legend\nThe charts use consistent party colors throughout the dashboard:\n\n\n\n\n\n\nColor\nPolitical Party\n\n\n\n\n\n50PLUS\n\n\n\nBBB\n\n\n\nBIJ1\n\n\n\nCDA\n\n\n\nChristenUnie\n\n\n\nD66\n\n\n\nDENK\n\n\n\nFvD\n\n\n\nGroenLinks\n\n\n\nJA21\n\n\n\nPvdA/GroenLinks\n\n\n\nPvdD\n\n\n\nSGP\n\n\n\nSP\n\n\n\nUnknown\n\n\n\nVVD\n\n\n\nVolt"
+  },
+  {
+    "objectID": "index.html#total-spending-by-source",
+    "href": "index.html#total-spending-by-source",
+    "title": " Political Ad Spend Tracker",
+    "section": "Total Spending by Source",
+    "text": "Total Spending by Source\n\n\n\n\n\n\n\n\n\npolitiekereclame.nl\n€9 615 328\n\n\n\n    \n    \n    About this source\n    ▼\n    \n    \n    Most Comprehensive Campaign Database - Aggregates political advertising data from multiple sources. Includes campaign spending, media channels, advertiser info, and campaign periods. Data is voluntarily reported by political parties.\n    Strengths: Complete overview, detailed channel breakdown, comprehensive coverage\n    Limitations: Voluntary reporting, may not capture all spending\n    \n    \n    \n\n\n\n\n\n\n\nSter Transparency\n€4 419 732\n\n\n\n    \n    \n    About this source\n    ▼\n    \n    \n    Official Broadcasting Transparency - Dutch public broadcasting organization providing detailed financial breakdowns of campaign spending. Includes both total campaign amounts and specific amounts spent on Ster channels (TV, radio, online). Data comes from mandatory transparency requirements.\n    Strengths: Official mandatory reporting, precise financial data, detailed channel breakdown\n    Limitations: Only covers Ster channels, limited to parties using public broadcasting\n    \n    \n    \n\n\n\n\n\n\n\nDPG Media\n€1 398 191\n\n\n\n    \n    \n    About this source\n    ▼\n    \n    \n    Major Media Company Data - One of the largest media companies in the Netherlands, operating newspapers, websites, and digital platforms. Provides campaign data from their advertising platforms. Spending amounts may have varying boundaries depending on campaign structure and reporting.\n    Strengths: Real-time data, major media company coverage, detailed campaign information\n    Limitations: Varying spending boundaries, limited to DPG Media properties only\n    \n    \n    \n\n\n\n\n\n politiekereclame.nl Data Ster Transparency Data DPG Media Data\n\n\n\n Campaign Spending by Advertiser\n\n\n\n\n\n\n\n\n Spending by Media Channel\n\n\n\n\n\n\n\nImportant: These are estimates, not exact figures because politiekereclame.nl does not provide exact spending amounts per media channel. When a campaign advertises on multiple channels (e.g., TV + Radio), we estimate by dividing the total budget equally between reported channels. Out of 59 total campaigns, only 33 campaigns (56%) report which channels they used. The remaining 26 campaigns (44%) don’t specify any channels. Top 3 campaigns without channel info: D66 (€2 204 352), FvD (€900 000), PvdD (€355 400).\n\n\n\n\n\nSter hosts PDF forms filled out by the advertisers that include both total spending as well as spending via Ster. The total spending diverges from the total spending reported via polietiekereclame.nl with no indication why.\n\n\n Campaign Spending by Advertiser\n\n\n\n\n\n\n\n\n Spending by Channel\n\nTotal - (Not just Ster)Just Ster\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportant: Ster provides breakdowns with exact (preliminary) spending on each channel (Television, Radio, Online Video and Online Display) in official transparency statements.\n\n\n\n\n\nImportant: DPG Media does not report exact amounts but spending boundaries (e.g. €1-1000) and it shows a maximum of 10k+ spending which means we can only estimate the total amount spent. Here we take the median between the minimum and maximum amount spent as an estimate.\n\n\n Campaign Spending by Advertiser\n\n\n\n\n\n\n\n\n Spending by Media Channel"
+  },
+  {
+    "objectID": "index.html#politiekereclame.nl-analysis",
+    "href": "index.html#politiekereclame.nl-analysis",
+    "title": "Political Advertising Spending Dashboard",
+    "section": " Politiekereclame.nl Analysis",
+    "text": "Politiekereclame.nl Analysis\n\nCampaign Spending by Advertiser\n\n\n\n\n\n\n\n\nSpending by Media Channel\n\n\n\n\n\n\n\nNote: Channel spending is calculated assuming equal distribution when campaigns report multiple channels. Some campaigns don’t report channel information at all."
+  },
+  {
+    "objectID": "index.html#ster-transparency-analysis",
+    "href": "index.html#ster-transparency-analysis",
+    "title": "Political Advertising Spending Dashboard",
+    "section": " Ster Transparency Analysis",
+    "text": "Ster Transparency Analysis\n\nTotal Spending Overview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDetailed Analysis\n\n\n\n\n\n\n\n\nTotal Campaign Spending by Advertiser\n\n\n\n\n\n\n\n\nSpending Breakdown by Channel Type\n\n\n\n\n\n\n\nNote: Ster data provides both total spending and specific amounts spent on Ster channels (television, radio, online display, online video). These numbers are more accurate as they come from official transparency statements."
+  },
+  {
+    "objectID": "index.html#dpg-media-data",
+    "href": "index.html#dpg-media-data",
+    "title": "Political Advertising Spending Dashboard",
+    "section": " DPG Media Data",
+    "text": "DPG Media Data\n\nTotal Spending Overview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDetailed Analysis\n\n\n\n\n\n\n\n\nCampaign Spending by Advertiser\n\n\n\n\n\n\n\n\nSpending by Media Channel\n\n\n\n\n\n\n\nNote: DPG Media spending calculations may have varying boundaries depending on how campaigns are structured and reported. This should be considered when interpreting the data.\n\n:::"
+  },
+  {
+    "objectID": "index.html#political-advertising-transparency-in-the-netherlands",
+    "href": "index.html#political-advertising-transparency-in-the-netherlands",
+    "title": " Political Advertising Tracker",
+    "section": " Political Advertising Transparency in the Netherlands",
+    "text": "Political Advertising Transparency in the Netherlands\nAs of October 10, 2024, new European Union regulations on political advertising transparency came into force across all EU member states. These rules require that political advertisements are clearly labeled, disclose their financing sources and targeting methods, and prohibit the use of sensitive personal data (such as ethnicity or religion) for targeting purposes without explicit consent.\nIn response to this evolving regulatory landscape, major Dutch media companies launched politiekereclame.nl as a centralized platform where political parties and organizations can submit transparency statements for their advertising campaigns. This initiative aims to simplify compliance with EU regulations while strengthening public trust in political advertising.\nHowever, available datasets diverge significantly in their scope, methodology, and coverage. This dashboard brings together three major data sources—each with distinct strengths and limitations—to provide the most comprehensive overview of political advertising spending in the Netherlands leading up to the 2025 parliamentary elections."
+  }
+]
