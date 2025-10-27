@@ -14,8 +14,10 @@ LOG_PATH="/Users/favstats/Dropbox/reclamer/update_dashboard.log"
 
 # Cron job runs daily at 8 PM
 CRON_TIME="0 20 * * *"
-# Set LANG environment variable for proper UTF-8 encoding
-CRON_JOB="$CRON_TIME export LANG=en_US.UTF-8; $RSCRIPT_PATH $SCRIPT_PATH >> $LOG_PATH 2>&1"
+# Set environment variables for proper UTF-8 encoding
+CRON_JOB="LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+$CRON_TIME $RSCRIPT_PATH $SCRIPT_PATH >> $LOG_PATH 2>&1"
 
 echo "Rscript path: $RSCRIPT_PATH"
 echo "Script path: $SCRIPT_PATH"
