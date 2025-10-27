@@ -12,6 +12,10 @@ cat("========================================\n\n")
 setwd("/Users/favstats/Dropbox/reclamer")
 cat("Working directory:", getwd(), "\n\n")
 
+# Set locale for proper UTF-8 encoding (fixes Euro symbol issue in cron)
+Sys.setlocale("LC_ALL", "en_US.UTF-8")
+cat("Locale set to:", Sys.getlocale("LC_ALL"), "\n\n")
+
 # Load required packages
 cat("Loading packages...\n")
 suppressPackageStartupMessages({
