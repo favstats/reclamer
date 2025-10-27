@@ -98,7 +98,7 @@ scrape_ster_transparency <- function(
   unified_data <- NULL
 
   if (parse_pdfs) {
-    raw_data <- parse_ster_pdfs(download_info$file_paths, extract_tables, extract_text, verbose)
+    raw_data <- parse_ster_pdfs(download_info$file_paths, download_info$pdf_urls, extract_tables, extract_text, verbose)
 
     if (verbose) cat("\n📊 Step 5: Creating unified dataset...\n")
     unified_data <- create_unified_ster_data(raw_data, verbose)
@@ -282,10 +282,11 @@ process_pdf_links <- function(page_data, verbose) {
 # Download PDFs from processed links
 download_ster_pdfs <- function(links_df, download_dir, verbose, last_updated = NULL) {
   if (nrow(links_df) == 0) {
-    return(list(file_paths = character(0), success = logical(0)))
+    return(list(file_paths = character(0), success = logical(0), pdf_urls = character(0)))
   }
 
   file_paths <- character(nrow(links_df))
+  pdf_urls <- character(nrow(links_df))
   success <- logical(nrow(links_df))
 
   # Create progress bar
@@ -329,6 +330,7 @@ download_ster_pdfs <- function(links_df, download_dir, verbose, last_updated = N
     # Check if file already exists
     if (file.exists(file_path) && !force_redownload) {
       file_paths[i] <- file_path
+      pdf_urls[i] <- url
       success[i] <- TRUE
       if (verbose) {
         setTxtProgressBar(pb, i)
@@ -346,6 +348,7 @@ download_ster_pdfs <- function(links_df, download_dir, verbose, last_updated = N
       writeBin(httr2::resp_body_raw(response), file_path)
 
       file_paths[i] <- file_path
+      pdf_urls[i] <- url
       success[i] <- TRUE
 
     }, error = function(e) {
@@ -367,13 +370,14 @@ download_ster_pdfs <- function(links_df, download_dir, verbose, last_updated = N
 
   return(list(
     file_paths = file_paths[success],
+    pdf_urls = pdf_urls[success],
     success = success,
     links_df = links_df
   ))
 }
 
 # Parse downloaded PDFs
-parse_ster_pdfs <- function(file_paths, extract_tables, extract_text, verbose) {
+parse_ster_pdfs <- function(file_paths, pdf_urls, extract_tables, extract_text, verbose) {
   if (length(file_paths) == 0) {
     return(tibble::tibble())
   }
@@ -388,6 +392,9 @@ parse_ster_pdfs <- function(file_paths, extract_tables, extract_text, verbose) {
 
   for (i in seq_along(file_paths)) {
     file_path <- file_paths[i]
+    
+    # Get the PDF URL directly from the parallel vector
+    pdf_url <- if (i <= length(pdf_urls)) pdf_urls[i] else NA_character_
 
     tryCatch({
       # Extract text using pdftools
@@ -427,6 +434,7 @@ parse_ster_pdfs <- function(file_paths, extract_tables, extract_text, verbose) {
         party = party,
         version = version,
         format = format,
+        pdf_url = pdf_url,
         text_content = text_content,
         table_content = table_content,
         pdf_info = pdf_info,
@@ -438,6 +446,7 @@ parse_ster_pdfs <- function(file_paths, extract_tables, extract_text, verbose) {
       parsed_data[[i]] <- list(
         file_path = file_path,
         filename = basename(file_path),
+        pdf_url = pdf_url,
         parse_success = FALSE,
         error = e$message
       )
@@ -488,6 +497,7 @@ create_unified_ster_data <- function(parsed_data, verbose) {
       version = version,
       format = format,
       file_path = pdf_data$file_path,
+      pdf_url = if (!is.null(pdf_data$pdf_url)) pdf_data$pdf_url else NA_character_,
 
       # Basic stats
       word_count = if (!is.null(text_data$word_count)) text_data$word_count else NA_integer_,

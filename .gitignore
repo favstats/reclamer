@@ -6,6 +6,7 @@
 .quarto
 ster_pdfs/
 _site/
+_site/ster_pdfs/
 data/
 *_files/
 debug*.R
