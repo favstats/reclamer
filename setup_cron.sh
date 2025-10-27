@@ -12,8 +12,8 @@ RSCRIPT_PATH=$(which Rscript)
 SCRIPT_PATH="/Users/favstats/Dropbox/reclamer/update_dashboard.R"
 LOG_PATH="/Users/favstats/Dropbox/reclamer/update_dashboard.log"
 
-# Cron job runs daily at 2 AM
-CRON_TIME="0 2 * * *"
+# Cron job runs daily at 8 PM
+CRON_TIME="0 20 * * *"
 CRON_JOB="$CRON_TIME $RSCRIPT_PATH $SCRIPT_PATH >> $LOG_PATH 2>&1"
 
 echo "Rscript path: $RSCRIPT_PATH"
@@ -49,7 +49,7 @@ fi
 echo ""
 echo "✅ Cron job added successfully!"
 echo ""
-echo "The dashboard will be updated daily at 2:00 AM"
+echo "The dashboard will be updated daily at 8:00 PM"
 echo "Logs will be saved to: $LOG_PATH"
 echo ""
 echo "To view current crontab:"
