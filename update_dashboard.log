@@ -56,3 +56,41 @@ Pushing to remote...
 Script completed successfully!
 Finished at: 2025-10-28 20:02:05.020146 
 ========================================
+
+========================================
+Dashboard Update Script
+Started at: 2025-10-30 20:00:01.056759 
+========================================
+
+Working directory: /Users/favstats/Dropbox/reclamer 
+
+[1] "en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8"
+Locale set to: en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8 
+
+Loading packages...
+
+--- Rendering Dashboard ---
+Quarto output:
+ [33mWARN: The file /Users/favstats/Dropbox/reclamer/_site/index.qmd contains a theme property which is being ignored. Website projects do not support per document themes since all pages within a website share the website's theme.[39m
+[31m
+
+processing file: index.qmd
+[39m1/31                   
+2/31 [setup]           
+3/31                   
+4/31 [unnamed-chunk-1] 
+[31mError in mutate(., advertiser_raw = opdrachtgever_naam_organisatie, advertiser = aggregate_parties(advertiser_raw),  : 
+  ℹ In argument: `theme = coalesce(theme, "Unknown")`.
+Caused by error in `coalesce()`:
+! `..1` must be a vector, not a function.
+Calls: .main ... withRestartList -> withOneRestart -> docall -> do.call -> fun
+[39m[31m
+
+
+Quitting from lines 521-689 [unnamed-chunk-1] (index.qmd)
+Execution halted
+[39m 
+❌ Error rendering dashboard: Quarto rendering failed 
+Warning message:
+In system2(quarto_path, args = c("render", "_site/index.qmd"), stdout = TRUE,  :
+  running command ''/Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto' render _site/index.qmd 2>&1' had status 1
