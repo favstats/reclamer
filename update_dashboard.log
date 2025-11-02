@@ -94,3 +94,22 @@ Execution halted
 Warning message:
 In system2(quarto_path, args = c("render", "_site/index.qmd"), stdout = TRUE,  :
   running command ''/Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto' render _site/index.qmd 2>&1' had status 1
+
+========================================
+Dashboard Update Script
+Started at: 2025-11-02 20:00:00.759542 
+========================================
+
+Working directory: /Users/favstats/Dropbox/reclamer 
+
+[1] "en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8"
+Locale set to: en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8 
+
+Loading packages...
+
+--- Rendering Dashboard ---
+✅ Dashboard rendered successfully!
+
+--- Git Operations ---
+Files changed: 3 
+Adding files to git...
