@@ -9,7 +9,7 @@
 #' @param theme Character string to filter by theme. Use \code{NULL} to omit.
 #' @param country_code Character string for country code (DPG Media only). Default: "NL".
 #' @param period Character string for time period (DPG Media only). Options: "PAST_7_DAYS",
-#'   "PAST_30_DAYS", "PAST_YEAR". Default: "PAST_7_DAYS".
+#'   "PAST_30_DAYS", "PAST_YEAR", or \code{NULL} to get all available data. Default: \code{NULL}.
 #' @param channel Character string for channel type (DPG Media only). Options: "PRINT", "DIGITAL",
 #'   or \code{NULL} for all channels. Default: \code{NULL}.
 #' @param page Integer page number (>= 1). Ignored when \code{all = TRUE}.
@@ -43,8 +43,9 @@
 #' fetch_ads(query = "campaign", all = TRUE, verbose = TRUE)
 #' 
 #' # DPG Media API
+#' fetch_ads(source = "dpgmedia")  # Gets all available data
 #' fetch_ads(source = "dpgmedia", period = "PAST_30_DAYS")
-#' fetch_ads(source = "dpgmedia", channel = "PRINT", period = "PAST_YEAR")
+#' fetch_ads(source = "dpgmedia", channel = "PRINT")
 #' }
 #'
 #' @importFrom httr2 request req_url_query req_headers req_user_agent req_perform
@@ -57,7 +58,7 @@ fetch_ads <- function(
     query = NULL,
     theme = NULL,
     country_code = "NL",
-    period = c("PAST_7_DAYS", "PAST_30_DAYS", "PAST_YEAR"),
+    period = NULL,
     channel = NULL,
     page = 1L,
     limit = 25L,
@@ -71,7 +72,12 @@ fetch_ads <- function(
 ) {
   # Input validation and parameter matching
   source <- match.arg(source)
-  period <- match.arg(period)
+  
+  # Match period if provided (NULL means get all data for DPG Media)
+  if (!is.null(period)) {
+    period <- match.arg(period, c("PAST_7_DAYS", "PAST_30_DAYS", "PAST_YEAR"))
+  }
+  
   return <- match.arg(return)
   
   # Validate inputs based on source
@@ -338,6 +344,8 @@ combine_tibbles <- function(parsed_list) {
 }
 
 # DPG Media specific functions
+# Note: DPG Media API response structure uses 'campaignItems' field (as of Nov 2025)
+# Previous versions may have used 'items' field
 create_dpgmedia_headers <- function(custom_headers) {
   default_headers <- list(
     "accept" = "*/*",
@@ -405,7 +413,10 @@ convert_dpgmedia_to_tibble <- function(parsed) {
   }
   
   # Handle different response structures
-  if (is.list(parsed) && !is.null(parsed$items)) {
+  # DPG Media API uses 'campaignItems' field (updated structure)
+  if (is.list(parsed) && !is.null(parsed$campaignItems)) {
+    items <- parsed$campaignItems
+  } else if (is.list(parsed) && !is.null(parsed$items)) {
     items <- parsed$items
   } else if (is.list(parsed)) {
     items <- parsed
