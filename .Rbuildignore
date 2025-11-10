@@ -27,3 +27,4 @@
 ^img$
 \.png$
 \.svg$
+^dev$
