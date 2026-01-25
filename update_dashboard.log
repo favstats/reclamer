@@ -1540,3 +1540,77 @@ package ‘gert’ was built under R version 4.4.3
 --- Git Operations ---
 Files changed: 3 
 Adding files to git...
+✅ Files added
+Committing changes...
+✅ Committed: Auto-update dashboard: 2026-01-21 
+Pushing to remote...
+✅ Pushed successfully!
+
+========================================
+Script completed successfully!
+Finished at: 2026-01-21 20:02:40.879581 
+========================================
+
+========================================
+Dashboard Update Script
+Started at: 2026-01-24 20:00:01.309383 
+========================================
+
+Working directory: /Users/favstats/Dropbox/reclamer 
+
+[1] "en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8"
+Locale set to: en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8 
+
+Loading packages...
+Warning message:
+package ‘gert’ was built under R version 4.4.3 
+
+--- Rendering Dashboard ---
+Quarto output:
+ [33mWARN: The file /Users/favstats/Dropbox/reclamer/_site/index.qmd contains a theme property which is being ignored. Website projects do not support per document themes since all pages within a website share the website's theme.[39m
+[31m
+
+processing file: index.qmd
+[39m1/31                   
+2/31 [setup]           
+3/31                   
+4/31 [unnamed-chunk-1] 
+[31mError:
+! Failed to scrape Ster page: Failed to perform HTTP request.
+Backtrace:
+    ▆
+ 1. └─global scrape_ster_transparency(download_dir = "ster_pdfs", parse_pdfs = TRUE)
+ 2.   └─global scrape_ster_page(base_url, verbose)
+ 3.     └─base::tryCatch(...)
+ 4.       └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 5.         └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 6.           └─value[[3L]](cond)
+[39m[31m
+Quitting from index.qmd:526-697 [unnamed-chunk-1]
+[39m[31mExecution halted
+[39m 
+❌ Error rendering dashboard: Quarto rendering failed 
+Warning message:
+In system2(quarto_path, args = c("render", "_site/index.qmd"), stdout = TRUE,  :
+  running command ''/Applications/RStudio.app/Contents/Resources/app/quarto/bin/quarto' render _site/index.qmd 2>&1' had status 1
+
+========================================
+Dashboard Update Script
+Started at: 2026-01-25 20:00:00.799629 
+========================================
+
+Working directory: /Users/favstats/Dropbox/reclamer 
+
+[1] "en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8"
+Locale set to: en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8 
+
+Loading packages...
+Warning message:
+package ‘gert’ was built under R version 4.4.3 
+
+--- Rendering Dashboard ---
+✅ Dashboard rendered successfully!
+
+--- Git Operations ---
+Files changed: 3 
+Adding files to git...
