@@ -9,7 +9,7 @@ cat(paste("Started at:", Sys.time()), "\n")
 cat("========================================\n\n")
 
 # Set working directory
-setwd("/Users/favstats/Dropbox/reclamer")
+setwd("/Users/favstats/Dropbox/adstracking/reclamer")
 cat("Working directory:", getwd(), "\n\n")
 
 # Set locale for proper UTF-8 encoding (fixes Euro symbol issue in cron)

@@ -9,8 +9,8 @@ echo ""
 
 # Define the cron job
 RSCRIPT_PATH=$(which Rscript)
-SCRIPT_PATH="/Users/favstats/Dropbox/reclamer/update_dashboard.R"
-LOG_PATH="/Users/favstats/Dropbox/reclamer/update_dashboard.log"
+SCRIPT_PATH="/Users/favstats/Dropbox/adstracking/reclamer/update_dashboard.R"
+LOG_PATH="/Users/favstats/Dropbox/adstracking/reclamer/update_dashboard.log"
 
 # Cron job runs daily at 8 PM
 CRON_TIME="0 20 * * *"
