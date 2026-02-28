@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "data_explorer.html#politiekereclame.nl-data",
+    "href": "data_explorer.html#politiekereclame.nl-data",
+    "title": " Data Explorer",
+    "section": "PolitiekeReclame.nl Data",
+    "text": "PolitiekeReclame.nl Data"
+  },
+  {
+    "objectID": "data_explorer.html#ster-transparency-data",
+    "href": "data_explorer.html#ster-transparency-data",
+    "title": " Data Explorer",
+    "section": "Ster Transparency Data",
+    "text": "Ster Transparency Data"
+  },
+  {
+    "objectID": "data_explorer.html#dpg-media-data",
+    "href": "data_explorer.html#dpg-media-data",
+    "title": " Data Explorer",
+    "section": "DPG Media Data",
+    "text": "DPG Media Data"
+  },
+  {
+    "objectID": "info.html#about-this-dashboard",
+    "href": "info.html#about-this-dashboard",
+    "title": " Info",
+    "section": "About This Dashboard",
+    "text": "About This Dashboard\nThis dashboard tracks political advertising spending across three major Dutch data sources leading up to the 2025 parliamentary elections.\n\nData Sources\nPolitiekeReclame.nl - The central platform developed by five Dutch media associations (Audify, MMA, NDP Nieuwsmedia, Outreach, and Screenforce) for EU political advertising transparency. Political advertisers submit declarations covering TV, radio, newspapers, magazines, outdoor, and online advertising.\nSter - The advertising sales organization for Dutch public broadcasting (NPO). Their transparency page lists political parties and organizations that purchased advertising through television, radio, and online channels.\nDPG Media - A major Dutch media company operating newspapers, magazines, and digital platforms. Their transparency page lists political advertising campaigns on their print and digital channels. DPG Media reports spending boundaries rather than exact amounts; we calculate spending by taking the midpoint.\n\n\nMethodology\n\nData is fetched daily from all three APIs/sources\nParty names are aggregated using regex matching to unify different spellings\nFor PolitiekeReclame channel analysis, multi-channel campaigns are split equally\nDPG Media spending is estimated as the midpoint of budget brackets\nSter data is extracted from PDF transparency statements\n\n\n\nCode\nPowered by the reclamer R package: github.com/favstats/reclamer\nDashboard generated: February 28, 2026 at 17:12 CET"
+  }
+]

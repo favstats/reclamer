@@ -1,0 +1,68 @@
+---
+title: "{{< iconify line-md search >}} Data Explorer"
+format: html
+---
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+dashboardr::.page_config(accessibility = TRUE, crosstab_prefix = "data_explorer")
+```
+
+```{r setup}
+#| echo: false
+#| warning: false
+#| message: false
+#| error: false
+#| results: 'hide'
+
+# Load dashboardr (includes dplyr, highcharter as dependencies)
+library(dashboardr)
+
+# Global chunk options
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  error = FALSE,
+  fig.width = 12,
+  fig.height = 8,
+  dpi = 300
+)
+
+# Load styled table objects
+
+table_obj_1 <- readRDS('table_obj_1.rds')
+table_obj_2 <- readRDS('table_obj_2.rds')
+table_obj_3 <- readRDS('table_obj_3.rds')
+
+```
+
+
+## PolitiekeReclame.nl Data
+
+
+```{r}
+#| echo: false
+
+table_obj_1
+```
+
+
+## Ster Transparency Data
+
+
+```{r}
+#| echo: false
+
+table_obj_2
+```
+
+
+## DPG Media Data
+
+
+```{r}
+#| echo: false
+
+table_obj_3
+```
+

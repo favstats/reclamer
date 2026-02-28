@@ -1,0 +1,338 @@
+---
+title: "{{< iconify line-md gauge >}} Ad Spend Tracker"
+format: html
+---
+
+```{r, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
+dashboardr::.page_config(accessibility = TRUE, crosstab_prefix = "ad_spend_tracker")
+```
+
+```{r setup}
+#| echo: false
+#| warning: false
+#| message: false
+#| error: false
+#| results: 'hide'
+
+# Load dashboardr (includes dplyr, highcharter as dependencies)
+library(dashboardr)
+
+# Global chunk options
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  error = FALSE,
+  fig.width = 12,
+  fig.height = 8,
+  dpi = 300
+)
+
+# Load multiple datasets
+
+# Load data_1
+if (!exists('.dashboardr_bundle_cache', inherits = FALSE)) .dashboardr_bundle_cache <- list()
+if (is.null(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']])) .dashboardr_bundle_cache[['dashboard_data_bundle.rds']] <- readRDS('dashboard_data_bundle.rds')
+if (!('data_1_142obs.rds' %in% names(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']]))) stop("Bundle key 'data_1_142obs.rds' not found in dashboard_data_bundle.rds", call. = FALSE)
+data_1 <- .dashboardr_bundle_cache[['dashboard_data_bundle.rds']][['data_1_142obs.rds']]
+cat('data_1 loaded:', nrow(data_1), 'rows,', ncol(data_1), 'columns\n')
+
+# Load data_2
+if (!exists('.dashboardr_bundle_cache', inherits = FALSE)) .dashboardr_bundle_cache <- list()
+if (is.null(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']])) .dashboardr_bundle_cache[['dashboard_data_bundle.rds']] <- readRDS('dashboard_data_bundle.rds')
+if (!('data_2_20obs.rds' %in% names(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']]))) stop("Bundle key 'data_2_20obs.rds' not found in dashboard_data_bundle.rds", call. = FALSE)
+data_2 <- .dashboardr_bundle_cache[['dashboard_data_bundle.rds']][['data_2_20obs.rds']]
+cat('data_2 loaded:', nrow(data_2), 'rows,', ncol(data_2), 'columns\n')
+
+# Load data_3
+if (!exists('.dashboardr_bundle_cache', inherits = FALSE)) .dashboardr_bundle_cache <- list()
+if (is.null(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']])) .dashboardr_bundle_cache[['dashboard_data_bundle.rds']] <- readRDS('dashboard_data_bundle.rds')
+if (!('data_3_3obs.rds' %in% names(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']]))) stop("Bundle key 'data_3_3obs.rds' not found in dashboard_data_bundle.rds", call. = FALSE)
+data_3 <- .dashboardr_bundle_cache[['dashboard_data_bundle.rds']][['data_3_3obs.rds']]
+cat('data_3 loaded:', nrow(data_3), 'rows,', ncol(data_3), 'columns\n')
+
+# Load data_4
+if (!exists('.dashboardr_bundle_cache', inherits = FALSE)) .dashboardr_bundle_cache <- list()
+if (is.null(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']])) .dashboardr_bundle_cache[['dashboard_data_bundle.rds']] <- readRDS('dashboard_data_bundle.rds')
+if (!('data_4_20obs.rds' %in% names(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']]))) stop("Bundle key 'data_4_20obs.rds' not found in dashboard_data_bundle.rds", call. = FALSE)
+data_4 <- .dashboardr_bundle_cache[['dashboard_data_bundle.rds']][['data_4_20obs.rds']]
+cat('data_4 loaded:', nrow(data_4), 'rows,', ncol(data_4), 'columns\n')
+
+# Load data_5
+if (!exists('.dashboardr_bundle_cache', inherits = FALSE)) .dashboardr_bundle_cache <- list()
+if (is.null(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']])) .dashboardr_bundle_cache[['dashboard_data_bundle.rds']] <- readRDS('dashboard_data_bundle.rds')
+if (!('data_5_3obs.rds' %in% names(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']]))) stop("Bundle key 'data_5_3obs.rds' not found in dashboard_data_bundle.rds", call. = FALSE)
+data_5 <- .dashboardr_bundle_cache[['dashboard_data_bundle.rds']][['data_5_3obs.rds']]
+cat('data_5 loaded:', nrow(data_5), 'rows,', ncol(data_5), 'columns\n')
+
+# Load dataset
+if (!exists('.dashboardr_bundle_cache', inherits = FALSE)) .dashboardr_bundle_cache <- list()
+if (is.null(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']])) .dashboardr_bundle_cache[['dashboard_data_bundle.rds']] <- readRDS('dashboard_data_bundle.rds')
+if (!('dataset_small_20obs.rds' %in% names(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']]))) stop("Bundle key 'dataset_small_20obs.rds' not found in dashboard_data_bundle.rds", call. = FALSE)
+dataset <- .dashboardr_bundle_cache[['dashboard_data_bundle.rds']][['dataset_small_20obs.rds']]
+cat('dataset loaded:', nrow(dataset), 'rows,', ncol(dataset), 'columns\n')
+
+# Load dataset_2
+if (!exists('.dashboardr_bundle_cache', inherits = FALSE)) .dashboardr_bundle_cache <- list()
+if (is.null(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']])) .dashboardr_bundle_cache[['dashboard_data_bundle.rds']] <- readRDS('dashboard_data_bundle.rds')
+if (!('dataset_small_20obs_2.rds' %in% names(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']]))) stop("Bundle key 'dataset_small_20obs_2.rds' not found in dashboard_data_bundle.rds", call. = FALSE)
+dataset_2 <- .dashboardr_bundle_cache[['dashboard_data_bundle.rds']][['dataset_small_20obs_2.rds']]
+cat('dataset_2 loaded:', nrow(dataset_2), 'rows,', ncol(dataset_2), 'columns\n')
+
+# Load dataset_3
+if (!exists('.dashboardr_bundle_cache', inherits = FALSE)) .dashboardr_bundle_cache <- list()
+if (is.null(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']])) .dashboardr_bundle_cache[['dashboard_data_bundle.rds']] <- readRDS('dashboard_data_bundle.rds')
+if (!('dataset_small_2obs.rds' %in% names(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']]))) stop("Bundle key 'dataset_small_2obs.rds' not found in dashboard_data_bundle.rds", call. = FALSE)
+dataset_3 <- .dashboardr_bundle_cache[['dashboard_data_bundle.rds']][['dataset_small_2obs.rds']]
+cat('dataset_3 loaded:', nrow(dataset_3), 'rows,', ncol(dataset_3), 'columns\n')
+
+# Load dataset_4
+if (!exists('.dashboardr_bundle_cache', inherits = FALSE)) .dashboardr_bundle_cache <- list()
+if (is.null(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']])) .dashboardr_bundle_cache[['dashboard_data_bundle.rds']] <- readRDS('dashboard_data_bundle.rds')
+if (!('dataset_small_7obs.rds' %in% names(.dashboardr_bundle_cache[['dashboard_data_bundle.rds']]))) stop("Bundle key 'dataset_small_7obs.rds' not found in dashboard_data_bundle.rds", call. = FALSE)
+dataset_4 <- .dashboardr_bundle_cache[['dashboard_data_bundle.rds']][['dataset_small_7obs.rds']]
+cat('dataset_4 loaded:', nrow(dataset_4), 'rows,', ncol(dataset_4), 'columns\n')
+
+```
+
+
+This dashboard tracks political advertising spending across three major Dutch data sources.
+Following new **EU transparency regulations** and subsequent political ad bans by Meta and Google,
+attention has shifted toward traditional media channels.
+
+*Last updated: February 28, 2026 at 17:12 CET*
+
+
+```{r}
+#| echo: false
+dashboardr::render_sparkline_card_row(data = data, list(
+  list(
+    x_var = "date",
+    y_var = NULL,
+    value = "€25,991,666",
+    subtitle = "PolitiekeReclame.nl",
+    agg = "count",
+    line_color = "#ffffff",
+    bg_color = "#4c5f7a",
+    text_color = "#ffffff",
+    height = 60,
+    smooth = 0.6,
+    area_opacity = 0.18,
+    filter_expr = NULL,
+    value_prefix = "",
+    value_suffix = "",
+    connect_group = NULL
+  ),
+  list(
+    x_var = "date",
+    y_var = NULL,
+    value = "€5,326,250",
+    subtitle = "Ster Transparency",
+    agg = "count",
+    line_color = "#ffffff",
+    bg_color = "#3d7068",
+    text_color = "#ffffff",
+    height = 60,
+    smooth = 0.6,
+    area_opacity = 0.18,
+    filter_expr = NULL,
+    value_prefix = "",
+    value_suffix = "",
+    connect_group = NULL
+  ),
+  list(
+    x_var = "date",
+    y_var = NULL,
+    value = "€4,597,735",
+    subtitle = "DPG Media",
+    agg = "count",
+    line_color = "#ffffff",
+    bg_color = "#5b8db8",
+    text_color = "#ffffff",
+    height = 60,
+    smooth = 0.6,
+    area_opacity = 0.18,
+    filter_expr = NULL,
+    value_prefix = "",
+    value_suffix = "",
+    connect_group = NULL
+  )
+), backend = "echarts4r")
+```
+
+## Total Spending by Party (All Sources)
+
+```{r total-spending-by-party-all-sources}
+# Total Spending by Party (All Sources)
+result <- viz_treemap(
+  data = data_2,
+  title = "Total Spending by Party (All Sources)",
+  group_var = "advertiser",
+  value_var = ".count",
+  color_palette = c("VVD" = "#e85a0f", "PVV" = "#154273", "CDA" = "#007c5e", "D66" = "#01ac48", "GroenLinks-PvdA" = "#e10600", "PvdA/GroenLinks" = "#e10600", "GroenLinks" = "#00842b", "PvdA" = "#e10600", "SP" = "#f00000", "ChristenUnie" = "#00a7eb", "PvdD" = "#006b2c", "Vrede voor Dieren" = "#506b2c", "50PLUS" = "#672c7a", "SGP" = "#006e98", "DENK" = "#00bcb3", "FvD" = "#8b1a1a", "JA21" = "#12487c", "Volt" = "#52267d", "BIJ1" = "#fff200", "BBB" = "#93bf1f", "NSC" = "#0a3d8f", "Unknown" = "#94a3b8"),
+  backend = "echarts4r"
+)
+
+result
+```
+
+## Total Spending by Data Source
+
+```{r bar-source}
+# Total Spending by Data Source
+result <- viz_bar(
+  data = data_3,
+  title = "Total Spending by Data Source",
+  x_var = "source",
+  value_var = ".count",
+  color_palette = c("PolitiekeReclame" = "#4c5f7a", "Ster" = "#3d7068", "DPG Media" = "#5b8db8"),
+  x_order = c("PolitiekeReclame", "Ster", "DPG Media"),
+  horizontal = TRUE,
+  backend = "echarts4r"
+)
+
+result
+```
+
+## Top Spenders by Source
+
+
+::: {.panel-tabset}
+
+### PolitiekeReclame
+
+
+```{r by-source-politiekereclame}
+# PolitiekeReclame: Top Spenders
+result <- viz_bar(
+  data = data_4,
+  title = "PolitiekeReclame: Top Spenders",
+  x_var = "advertiser",
+  value_var = ".count",
+  color_palette = c("VVD" = "#e85a0f", "PVV" = "#154273", "CDA" = "#007c5e", "D66" = "#01ac48", "GroenLinks-PvdA" = "#e10600", "PvdA/GroenLinks" = "#e10600", "GroenLinks" = "#00842b", "PvdA" = "#e10600", "SP" = "#f00000", "ChristenUnie" = "#00a7eb", "PvdD" = "#006b2c", "Vrede voor Dieren" = "#506b2c", "50PLUS" = "#672c7a", "SGP" = "#006e98", "DENK" = "#00bcb3", "FvD" = "#8b1a1a", "JA21" = "#12487c", "Volt" = "#52267d", "BIJ1" = "#fff200", "BBB" = "#93bf1f", "NSC" = "#0a3d8f", "Unknown" = "#94a3b8"),
+  horizontal = TRUE,
+  x_order = c("Voor De Gemeenschap (V.D.G.)" = "NSC", "FNP" = "FNP", "Platform Zorg voor Leven" = "Platform Zorg voor Leven", "Vereniging Humanitas" = "Vereniging Humanitas", "Stichting Colourful Dreams " = "Stichting Colourful Dreams ", "DENK Amsterdam" = "DENK", "Voor Ons Nederland" = "Voor Ons Nederland", "Volt Leidschendam-Voorburg" = "Volt", "BBB" = "BBB", "JA21 - conservatieve liberalen" = "JA21", "SGP Afdeling Krimpen aan den IJssel" = "SGP", "Partij voor de Dieren Zaanstad" = "PvdD", "Socialistische Partij" = "SP", "FNP Hearrenfean" = "FNP Hearrenfean", "ChristenUnie Haarlem" = "ChristenUnie", "Stichting ondersteuning gemeenteraadsfractie FVD Beverwijk" = "FvD", "CDA Leidschendam-Voorburg" = "CDA", "VVD Beekdaelen" = "VVD", "GroenLinks Noordenveld" = "PvdA/GroenLinks", "D66 De Ronde Venen" = "D66")
+)
+
+result
+```
+
+
+### Ster
+
+
+```{r by-source-ster}
+# Ster: Top Spenders
+result <- viz_bar(
+  data = dataset,
+  title = "Ster: Top Spenders",
+  x_var = "advertiser",
+  value_var = ".count",
+  color_palette = c("VVD" = "#e85a0f", "PVV" = "#154273", "CDA" = "#007c5e", "D66" = "#01ac48", "GroenLinks-PvdA" = "#e10600", "PvdA/GroenLinks" = "#e10600", "GroenLinks" = "#00842b", "PvdA" = "#e10600", "SP" = "#f00000", "ChristenUnie" = "#00a7eb", "PvdD" = "#006b2c", "Vrede voor Dieren" = "#506b2c", "50PLUS" = "#672c7a", "SGP" = "#006e98", "DENK" = "#00bcb3", "FvD" = "#8b1a1a", "JA21" = "#12487c", "Volt" = "#52267d", "BIJ1" = "#fff200", "BBB" = "#93bf1f", "NSC" = "#0a3d8f", "Unknown" = "#94a3b8"),
+  horizontal = TRUE,
+  x_order = c("CIWF", "Naturalis", "50PLUS", "SGP", "TheRightsForum", "NSC", "PvdD", "ChristenUnie", "FvD", "VooronsNederland", "Unicef", "Humanitas", "Milieudefensie", "JA21", "SP", "Volt", "VVD", "CDA", "PvdA/GroenLinks", "D66")
+)
+
+result
+```
+
+
+### DPG Media
+
+
+```{r by-source-dpgmedia}
+# DPG Media: Top Spenders
+result <- viz_bar(
+  data = dataset_2,
+  title = "DPG Media: Top Spenders",
+  x_var = "advertiser",
+  value_var = ".count",
+  color_palette = c("VVD" = "#e85a0f", "PVV" = "#154273", "CDA" = "#007c5e", "D66" = "#01ac48", "GroenLinks-PvdA" = "#e10600", "PvdA/GroenLinks" = "#e10600", "GroenLinks" = "#00842b", "PvdA" = "#e10600", "SP" = "#f00000", "ChristenUnie" = "#00a7eb", "PvdD" = "#006b2c", "Vrede voor Dieren" = "#506b2c", "50PLUS" = "#672c7a", "SGP" = "#006e98", "DENK" = "#00bcb3", "FvD" = "#8b1a1a", "JA21" = "#12487c", "Volt" = "#52267d", "BIJ1" = "#fff200", "BBB" = "#93bf1f", "NSC" = "#0a3d8f", "Unknown" = "#94a3b8"),
+  horizontal = TRUE,
+  x_order = c("Gemeente Tilburg" = "Gemeente Tilburg", "Federatie Nederlandse Vakbeweging (FNV)" = "Federatie Nederlandse Vakbeweging (FNV)", "Partij voor de Dieren" = "PvdD", "Stichting Naturalis Biodiversity Center" = "Stichting Naturalis Biodiversity Center", "Stichting Oxfam Novib" = "Stichting Oxfam Novib", "S&D Group" = "S&D Group", "Forum voor Democratie" = "FvD", "Stichting Avs Proefdiervrij" = "Stichting Avs Proefdiervrij", "Omroepvereniging MAX" = "Omroepvereniging MAX", "ChristenUnie Delft" = "ChristenUnie", "ADR Nieuwsmedia" = "ADR Nieuwsmedia", "Vereniging Milieudefensie" = "Vereniging Milieudefensie", "Nieuw Sociaal Contract" = "NSC", "Stichting The Rights Forum" = "Stichting The Rights Forum", "ANWB B.V." = "ANWB B.V.", "Stichting De Faunabescherming" = "Stichting De Faunabescherming", "CDA land van Cuijk" = "CDA", "Staatkundig Gereformeerde Partij (SGP)" = "SGP", "D66 Afdeling Gouda" = "D66", "Groenlinks Nijmegen" = "PvdA/GroenLinks")
+)
+
+result
+```
+
+
+:::
+
+## Spending by Channel
+
+
+::: {.panel-tabset}
+
+### Ster
+
+
+```{r channels-ster}
+# Ster: Spending by Channel
+result <- viz_bar(
+  data = data_5,
+  title = "Ster: Spending by Channel",
+  x_var = "channel",
+  value_var = ".count",
+  color_palette = c("Television" = "#3b82f6", "Radio" = "#10b981", "Online" = "#f59e0b", "PRINT" = "#8b5cf6", "DIGITAL" = "#ec4899"),
+  horizontal = TRUE
+)
+
+result
+```
+
+
+### DPG Media
+
+
+```{r channels-dpgmedia}
+# DPG Media: Spending by Channel
+result <- viz_bar(
+  data = dataset_3,
+  title = "DPG Media: Spending by Channel",
+  x_var = "media_channel",
+  value_var = ".count",
+  color_palette = c("Television" = "#3b82f6", "Radio" = "#10b981", "Online" = "#f59e0b", "PRINT" = "#8b5cf6", "DIGITAL" = "#ec4899"),
+  horizontal = TRUE
+)
+
+result
+```
+
+
+### PolitiekeReclame
+
+
+```{r channels-politiekereclame}
+# PolitiekeReclame: Spending by Channel
+result <- viz_bar(
+  data = dataset_4,
+  title = "PolitiekeReclame: Spending by Channel",
+  x_var = "channels",
+  value_var = ".count",
+  horizontal = TRUE
+)
+
+result
+```
+
+
+:::
+
+## PolitiekeReclame: Campaign Start Dates Over Time
+
+```{r timeline-value}
+# PolitiekeReclame: Campaign Start Dates Over Time
+result <- viz_timeline(
+  data = data_1,
+  title = "PolitiekeReclame: Campaign Start Dates Over Time",
+  time_var = "date",
+  y_var = "value",
+  agg = "none",
+  chart_type = "line",
+  y_label = "Spending (€)",
+  backend = "echarts4r"
+)
+
+result
+```
+
