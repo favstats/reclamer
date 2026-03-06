@@ -40,11 +40,32 @@ if (update) {
   unlink("ster_pdfs/", recursive = TRUE)
 
   cat("Fetching PolitiekeReclame data...\n")
-  api_data_politiekereclame <- fetch_ads(
+  api_data_politiekereclame_default <- fetch_ads(
     source = "politiekereclame",
     all = TRUE,
     verbose = FALSE
   )
+  # Also fetch archived themes by ID (not returned by default)
+  archived_themes <- c(6L)  # 6 = Tweede Kamerverkiezingen 2025
+  api_data_archived <- lapply(archived_themes, function(tid) {
+    tryCatch(
+      fetch_ads(source = "politiekereclame", all = TRUE, verbose = FALSE,
+                extra_params = list(theme = tid)),
+      error = function(e) { cat("Theme", tid, "fetch failed:", e$message, "\n"); NULL }
+    )
+  })
+  api_data_archived <- dplyr::bind_rows(Filter(Negate(is.null), api_data_archived))
+  api_data_politiekereclame_new <- dplyr::bind_rows(api_data_politiekereclame_default, api_data_archived)
+  api_data_politiekereclame_new <- api_data_politiekereclame_new[!duplicated(api_data_politiekereclame_new$public_id), ]
+  # Merge with existing data to preserve campaigns the API may have dropped
+  if (file.exists("data/api_data_politiekereclame.rds")) {
+    api_data_politiekereclame_old <- readRDS("data/api_data_politiekereclame.rds")
+    dropped <- api_data_politiekereclame_old %>%
+      dplyr::filter(!public_id %in% api_data_politiekereclame_new$public_id)
+    api_data_politiekereclame <- dplyr::bind_rows(api_data_politiekereclame_new, dropped)
+  } else {
+    api_data_politiekereclame <- api_data_politiekereclame_new
+  }
   saveRDS(api_data_politiekereclame, "data/api_data_politiekereclame.rds")
 
   cat("Fetching DPG Media data...\n")
